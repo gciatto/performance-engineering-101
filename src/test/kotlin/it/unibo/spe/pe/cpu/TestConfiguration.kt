@@ -1,4 +1,4 @@
-package it.unibo.spe
+package it.unibo.spe.pe.cpu
 
 import kotlin.reflect.KClass
 

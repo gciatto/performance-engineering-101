@@ -1,4 +1,4 @@
-package it.unibo.spe
+package it.unibo.spe.pe.cpu
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe

@@ -1,4 +1,4 @@
-package it.unibo.spe
+package it.unibo.spe.pe.cpu
 
 class SlowTopKWordCounter(skipWord: (String) -> Boolean = { false }) : AbstractTopKWordCounter(skipWord) {
     override fun mostFrequentWords(lines: Sequence<String>, k: Int): Map<String, Int> =

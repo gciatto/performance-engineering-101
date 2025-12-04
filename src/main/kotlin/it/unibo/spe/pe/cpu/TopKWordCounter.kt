@@ -1,4 +1,4 @@
-package it.unibo.spe
+package it.unibo.spe.pe.cpu
 
 interface TopKWordCounter {
     fun skipWord(word: String): Boolean = false

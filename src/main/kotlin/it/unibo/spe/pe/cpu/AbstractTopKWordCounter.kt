@@ -1,4 +1,6 @@
-package it.unibo.spe
+package it.unibo.spe.pe.cpu
+
+import kotlin.text.iterator
 
 abstract class AbstractTopKWordCounter(private val skipWord: (String) -> Boolean) : TopKWordCounter {
     override fun skipWord(word: String): Boolean = skipWord.invoke(word)
