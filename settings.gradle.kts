@@ -21,4 +21,4 @@ gitHooks {
     createHooks()
 }
 
-rootProject.name = "Template-for-Kotlin-JVM-Projects"
+rootProject.name = rootProject.buildFile.parentFile.name
