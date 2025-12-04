@@ -7,5 +7,22 @@ abstract class AbstractTopKWordCounter(private val skipWord: (String) -> Boolean
 
     private val word = Regex("\\w+")
 
+    private val accents = mapOf(
+        'à' to 'a',
+        'è' to 'e',
+        'é' to 'e',
+        'ì' to 'i',
+        'ò' to 'o',
+        'ù' to 'u',
+    )
+
+    protected fun removeAccents(input: String): String {
+        val builder = StringBuilder()
+        for (char in input) {
+            builder.append(accents.getOrDefault(char, char))
+        }
+        return builder.toString()
+    }
+
     protected fun wordify(input: String): Sequence<String> = word.findAll(input).map { it.value }
 }

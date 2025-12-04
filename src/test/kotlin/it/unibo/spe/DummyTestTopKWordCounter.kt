@@ -19,12 +19,7 @@ class DummyTestTopKWordCounter : FunSpec({
         "repeat" to 3,
     )
 
-    fun skipShortWords(word: String): Boolean = word.length <= 2
-
-    val implementations = listOf(
-        DummyTopKWordCounter(::skipShortWords),
-        LazyTopKWordCounter(::skipShortWords),
-    )
+    val implementations = implementations(minimumWordLength = 2)
 
     implementations.forEach { impl ->
         test("Testing ${impl::class.simpleName} on dummy text") {

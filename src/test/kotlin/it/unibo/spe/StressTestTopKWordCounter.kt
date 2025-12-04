@@ -6,14 +6,14 @@ import io.kotest.matchers.shouldBe
 class StressTestTopKWordCounter : FunSpec({
     val topK = 15
 
-    val expectedDummyResult = mapOf(
+    val expectedResult = mapOf(
         "quando" to 277,
-        "perch" to 256,
         "tanto" to 249,
         "quella" to 227,
         "altro" to 225,
         "occhi" to 212,
         "disse" to 208,
+        "perche" to 207,
         "questo" to 188,
         "tutto" to 175,
         "esser" to 161,
@@ -24,18 +24,13 @@ class StressTestTopKWordCounter : FunSpec({
         "mondo" to 143,
     )
 
-    fun skipShortWords(word: String): Boolean = word.length <= 4
-
-    val implementations = listOf(
-        DummyTopKWordCounter(::skipShortWords),
-        LazyTopKWordCounter(::skipShortWords),
-    )
+    val implementations = implementations(minimumWordLength = 4)
 
     implementations.forEach { impl ->
         test("Testing ${impl::class.simpleName} on Dante's Inferno") {
             Resources.inferno {
                 val result = impl.mostFrequentWords(it, topK)
-                result.shouldBe(expectedDummyResult)
+                result.shouldBe(expectedResult)
             }
         }
     }

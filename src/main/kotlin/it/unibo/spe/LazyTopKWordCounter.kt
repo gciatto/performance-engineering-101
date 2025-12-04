@@ -5,6 +5,7 @@ class LazyTopKWordCounter(skipWord: (String) -> Boolean = { false }) : AbstractT
         .filterNot { it.isBlank() }
         .map { it.trim() }
         .map { it.lowercase() }
+        .map(this::removeAccents)
         .flatMap(this::wordify)
         .filterNot(this::skipWord)
         .groupingBy { it }
