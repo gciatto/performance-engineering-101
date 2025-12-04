@@ -7,17 +7,15 @@ object Resources {
         ?: throw IllegalArgumentException("Resource not found: $name")
 
     /**
-     * Function to load the inferno.txt resource file, LAZILY, as a sequence of lines.
+     * Function to load the inferno.txt resource file, LAZILY, as a single string containing the whole file.
      * Usage example:
      * ```kotlin
      * Resources.inferno {
-     *     // do something with lines in variable `it`
+     *     // do something with text in variable `it`
      * }
      * ```
-     * after all lines are managed in the block, the file is closed.
      */
-    fun <T> inferno(action: (Sequence<String>) -> T): T = url("inferno.txt")
-        .openStream()
-        .bufferedReader()
-        .useLines { action(it) }
+    fun <T> inferno(action: (String) -> T): T = url("inferno.txt")
+        .readText()
+        .let { action(it) }
 }

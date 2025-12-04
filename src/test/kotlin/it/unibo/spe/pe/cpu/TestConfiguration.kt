@@ -11,9 +11,6 @@ val classesUnderTest = buildSet<KClass<*>> {
     if (listOf("all", "slow").any { it in implementationsUnderTest }) {
         add(SlowTopKWordCounter::class)
     }
-    if (listOf("all", "lazy").any { it in implementationsUnderTest }) {
-        add(LazyTopKWordCounter::class)
-    }
     if (listOf("all", "optimized").any { it in implementationsUnderTest }) {
         add(OptimizedTopKWordCounter::class)
     }

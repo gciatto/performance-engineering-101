@@ -11,13 +11,7 @@ abstract class AbstractTopKWordCounter(private val skipWord: (String) -> Boolean
 
     override fun skipWord(word: String): Boolean = skipWord.invoke(word)
 
-    abstract override fun mostFrequentWords(lines: Sequence<String>, k: Int): Map<String, Int>
-
-    /**
-     * Regex used to match a contiguous sequence of word characters (i.e. letters, digits, underscores, etc.)
-     * This is needed to extract words from a text, ignoring punctuation and other non-word characters.
-     */
-    private val word = Regex("\\w+")
+    abstract override fun mostFrequentWords(input: String, k: Int): Map<String, Int>
 
     /**
      * Map containing accented characters and their non-accented equivalents.
@@ -37,17 +31,17 @@ abstract class AbstractTopKWordCounter(private val skipWord: (String) -> Boolean
      * @return the input string with accents removed
      */
     protected fun removeAccents(input: String): String {
-        val builder = StringBuilder()
-        for (char in input) {
-            builder.append(accents.getOrDefault(char, char))
+        var output = input
+        for ((accentedChar, unaccentedChar) in accents) {
+            output = output.replace(accentedChar, unaccentedChar)
         }
-        return builder.toString()
+        return output
     }
 
     /**
-     * Splits a string into words, ignoring punctuation and other non-word characters.
+     * Splits a string into words.
      * @param input the string to split into words
      * @return a sequence of words extracted from the input string
      */
-    protected fun wordify(input: String): Sequence<String> = word.findAll(input).map { it.value }
+    protected fun wordify(input: String): Sequence<String> = input.split(" ").asSequence()
 }

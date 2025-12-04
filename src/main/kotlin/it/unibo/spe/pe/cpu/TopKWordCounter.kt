@@ -19,19 +19,10 @@ fun interface TopKWordCounter {
 
     /**
      * Actual implementation of the K-most-frequent-words-counting algorithm,
-     * operating on a sequence (i.e. a lazy stream) of lines of text
-     * (e.g. a long file, read line by line).
-     * @param lines the sequence of lines to count the most frequent words in
-     * @param k the maximum number of most frequent words to return
-     * @return a map containing the k most frequent words and their occurrences
-     */
-    fun mostFrequentWords(lines: Sequence<String>, k: Int): Map<String, Int>
-
-    /**
-     * Convenience method for counting the most frequent words in a single string.
+     * operating on a single string containing the whole text.
      * @param input the text to count the most frequent words in
      * @param k the maximum number of most frequent words to return
      * @return a map containing the k most frequent words and their occurrences
      */
-    fun mostFrequentWords(input: String, k: Int): Map<String, Int> = mostFrequentWords(input.lineSequence(), k)
+    fun mostFrequentWords(input: String, k: Int): Map<String, Int>
 }

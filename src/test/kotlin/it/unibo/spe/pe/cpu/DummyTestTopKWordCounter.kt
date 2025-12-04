@@ -7,7 +7,8 @@ import io.kotest.matchers.shouldBe
  * Simple test to ensure that all implementations return the same result on a dummy text.
  *
  * Which implementations are actually tested depends on the environment variable `IMPLEMENTATIONS_UNDER_TEST`.
- * Admissible values are `all` (default), `slow`, `lazy`, and `optimized` (as per the names of the implementation classes).
+ * Admissible values are `all` (default), `slow`, `lazy`, and `optimized`
+ * (as per the names of the implementation classes).
  * Lack of such variable defaults to `all`.
  * See file `TestConfiguration.kt` for more details.
  */
