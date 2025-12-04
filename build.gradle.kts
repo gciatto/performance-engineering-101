@@ -1,3 +1,4 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
@@ -16,7 +17,11 @@ buildscript {
     }
 }
 
-group = "org.danilopianini"
+group = "it.unibo.spe"
+
+multiJvm {
+    jvmVersionForCompilation.set(17)
+}
 
 detekt {
     config.from(".detekt.yml")
