@@ -3,6 +3,14 @@ package it.unibo.spe.pe.cpu
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
+/**
+ * Stress test to ensure that all implementations are effective and efficient.
+ *
+ * Which implementations are actually tested depends on the environment variable `IMPLEMENTATIONS_UNDER_TEST`.
+ * Admissible values are `all` (default), `slow`, `lazy`, and `optimized` (as per the names of the implementation classes).
+ * Lack of such variable defaults to `all`.
+ * See file `TestConfiguration.kt` for more details.
+ */
 class StressTestTopKWordCounter : FunSpec({
     val topK = 15
 
